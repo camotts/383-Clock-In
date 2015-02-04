@@ -32,10 +32,10 @@ namespace ClockIn_ClockOut.Migrations
 
             IList<User> defaultUser = new List<User>();
 
-            defaultUser.Add(new User() { ID = 1, Username = "Admin", FirstName = "Group", LastName = "Six", Password = "selu2014", Role = 1 });
-            defaultUser.Add(new User() { ID = 2, Username = "bcornett", FirstName = "Brandon", LastName = "Cornett", Password = "Envoc1", Role = 0 });
-            defaultUser.Add(new User() { ID = 3, Username = "kjoiner", FirstName = "Kyle", LastName = "Joiner", Password = "Envoc2", Role = 0 });
-            defaultUser.Add(new User() { ID = 4, Username = "WiiKingJoe", FirstName = "Joe", LastName = "Naquin", Password = "1Hefebeer", Role = 0 });
+            defaultUser.Add(new User() { ID = 1, Username = "Admin", FirstName = "Group", LastName = "Six", Password = "selu2014", Role = 2, Timed = false});
+            defaultUser.Add(new User() { ID = 2, Username = "bcornett", FirstName = "Brandon", LastName = "Cornett", Password = "Envoc1", Role = 1, Timed = false});
+            defaultUser.Add(new User() { ID = 3, Username = "kjoiner", FirstName = "Kyle", LastName = "Joiner", Password = "Envoc2", Role = 1, Timed = false});
+            defaultUser.Add(new User() { ID = 4, Username = "WiiKingJoe", FirstName = "Joe", LastName = "Naquin", Password = "1Hefebeer", Role = 1, Timed = false});
 
             foreach (User std in defaultUser)
                 context.Users.AddOrUpdate(std);
