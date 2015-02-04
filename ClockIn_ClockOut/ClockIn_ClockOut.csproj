@@ -138,6 +138,10 @@
     <Compile Include="Migrations\201502040338212_Context Update 3.Designer.cs">
       <DependentUpon>201502040338212_Context Update 3.cs</DependentUpon>
     </Compile>
+    <Compile Include="Migrations\201502040445018_ContextName4.cs" />
+    <Compile Include="Migrations\201502040445018_ContextName4.Designer.cs">
+      <DependentUpon>201502040445018_ContextName4.cs</DependentUpon>
+    </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Models\DatabaseContext.cs" />
     <Compile Include="Models\Role.cs" />
@@ -222,6 +226,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Migrations\201502040338212_Context Update 3.resx">
       <DependentUpon>201502040338212_Context Update 3.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201502040445018_ContextName4.resx">
+      <DependentUpon>201502040445018_ContextName4.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <PropertyGroup>
