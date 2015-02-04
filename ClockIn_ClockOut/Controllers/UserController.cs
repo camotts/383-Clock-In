@@ -7,9 +7,12 @@ using System.Net;
 using System.Web;
 using System.Web.Mvc;
 using ClockIn_ClockOut.Models;
+using System.Web.Security;
+
 
 namespace ClockIn_ClockOut.Controllers
 {
+
     public class UserController : Controller
     {
         private DatabaseContext db = new DatabaseContext();
@@ -50,6 +53,7 @@ namespace ClockIn_ClockOut.Controllers
         {
             if (ModelState.IsValid)
             {
+                user.Role = 1;
                 db.Users.Add(user);
                 db.SaveChanges();
                 return RedirectToAction("Index");
@@ -88,6 +92,24 @@ namespace ClockIn_ClockOut.Controllers
             }
             return View(user);
         }
+
+        //Login Controller
+        [HttpGet]
+        [AllowAnonymous]
+        public ActionResult Login()
+        {
+            return View();
+        }
+
+        [HttpPost]
+        [AllowAnonymous]
+        public ActionResult Login(User userLogingIn)
+        {
+           //This is where to put the Auth cookie and validate the user
+            return View(userLogingIn);
+        }
+
+
 
         // GET: Users/Delete/5
         public ActionResult Delete(int? id)
