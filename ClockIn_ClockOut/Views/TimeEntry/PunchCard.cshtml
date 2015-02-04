@@ -1,4 +1,4 @@
-﻿@model ClockIn_ClockOut.Models.TimeEntry
+﻿@model IEnumerable<ClockIn_ClockOut.Models.TimeEntry>
 
 @{
     ViewBag.Title = "Punch Card";
@@ -10,15 +10,51 @@
     {
         using (Html.BeginForm("PunchCard", "TimeEntry"))
         {
-            <button class="btn btn-inverse btn-lg" title="Punch Out" type="submit">Punch Out</button>
-
+            <center><button class="btn btn-inverse btn-lg" title="Punch Out" type="submit">Punch Out</button></center>
         }
     }
     else
     {
         using (Html.BeginForm("PunchCard", "TimeEntry"))
         {
-            <button class="btn btn-inverse btn-lg" title="Punch In" type="submit">Punch In</button>
+            <center><button class="btn btn-inverse btn-lg" title="Punch In" type="submit">Punch In</button></center>
         }
     }
 </p>
+
+
+<table class="table">
+    <tr>
+        <th>
+            Name
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.TimeIn)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.TimeOut)
+        </th>
+        <th></th>
+    </tr>
+
+    @foreach (var item in Model)
+    {
+        <tr>
+            <td>
+              @ViewBag.fullName
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.TimeIn)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.TimeOut)
+            </td>
+            <td>
+                @Html.ActionLink("Edit", "Edit", new { id = item.ID }, new { @class = "btn btn-warning btn-xs" })
+                @Html.ActionLink("Details", "Details", new { id = item.ID }, new { @class = "btn btn-default btn-xs" })
+                @Html.ActionLink("Delete", "Delete", new { id = item.ID }, new { @class = "btn btn-danger btn-xs" })
+            </td>
+        </tr>
+    }
+
+</table>

@@ -115,19 +115,30 @@ namespace ClockIn_ClockOut.Controllers
             db.SaveChanges();
             return RedirectToAction("Index");
         }
+        [Authorize]
         [HttpGet]
         public ActionResult PunchCard()
         {
-            var user = db.Users.FirstOrDefault(u => u.FirstName == User.Identity.Name);
+            //Grab the user
+            var user = db.Users.FirstOrDefault(u => u.Username == User.Identity.Name);
             ViewBag.user = user;
-            return View();
+
+            //grab all the time entries for the user
+            List<TimeEntry> TimeEntries = db.TimeEntries.Where(x => x.UserId == user.ID).ToList();
+            ViewBag.TimeEntries = TimeEntries;
+
+            //for the display name, put the full name together
+            string cFullName = user.FirstName + " " + user.LastName;
+            ViewBag.fullName = cFullName;
+
+            return View(TimeEntries);
         }
 
         [HttpPost]
         public ActionResult PunchCard(TimeEntry time)
         {
 
-            var user = db.Users.FirstOrDefault(u => u.FirstName == User.Identity.Name);
+            var user = db.Users.FirstOrDefault(u => u.Username == User.Identity.Name);
 
             if (user.Timed)
             {
