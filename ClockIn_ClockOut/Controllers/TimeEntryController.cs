@@ -119,7 +119,7 @@ namespace ClockIn_ClockOut.Controllers
         [HttpGet]
         public ActionResult PunchCard()
         {
-            var user = db.Users.FirstOrDefault(u => u.FirstName == User.Identity.Name);
+            var user = db.Users.FirstOrDefault(u => u.Username == User.Identity.Name);
             ViewBag.user = user;
             return View();
         }
@@ -128,7 +128,7 @@ namespace ClockIn_ClockOut.Controllers
         public ActionResult PunchCard(TimeEntry time)
         {
 
-            var user = db.Users.FirstOrDefault(u => u.FirstName == User.Identity.Name);
+            var user = db.Users.FirstOrDefault(u => u.Username == User.Identity.Name);
             
             if (user.Timed)
             {
