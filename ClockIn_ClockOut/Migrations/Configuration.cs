@@ -6,7 +6,7 @@ namespace ClockIn_ClockOut.Migrations
     using System.Data.Entity;
     using System.Data.Entity.Migrations;
     using System.Linq;
-
+    
     internal sealed class Configuration : DbMigrationsConfiguration<ClockIn_ClockOut.Models.DatabaseContext>
     {
         public Configuration()
@@ -17,19 +17,7 @@ namespace ClockIn_ClockOut.Migrations
 
         protected override void Seed(ClockIn_ClockOut.Models.DatabaseContext context)
         {
-            //  This method will be called after migrating to the latest version.
-
-            //  You can use the DbSet<T>.AddOrUpdate() helper extension method 
-            //  to avoid creating duplicate seed data. E.g.
-            //
-            //    context.People.AddOrUpdate(
-            //      p => p.FullName,
-            //      new Person { FullName = "Andrew Peters" },
-            //      new Person { FullName = "Brice Lambson" },
-            //      new Person { FullName = "Rowan Miller" }
-            //    );
-            //
-
+            
             IList<User> defaultUser = new List<User>();
 
             defaultUser.Add(new User() { ID = 1, Username = "Admin", FirstName = "Group", LastName = "Six", Password = "selu2014", Role = 2, Timed = false});

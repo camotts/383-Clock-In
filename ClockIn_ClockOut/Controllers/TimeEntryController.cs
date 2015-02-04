@@ -7,6 +7,7 @@ using System.Net;
 using System.Web;
 using System.Web.Mvc;
 using ClockIn_ClockOut.Models;
+using System.Data.Entity.Migrations;
 
 namespace ClockIn_ClockOut.Controllers
 {
@@ -113,6 +114,49 @@ namespace ClockIn_ClockOut.Controllers
             db.TimeEntries.Remove(timeEntry);
             db.SaveChanges();
             return RedirectToAction("Index");
+        }
+        [HttpGet]
+        public ActionResult PunchCard()
+        {
+            var user = db.Users.FirstOrDefault(u => u.FirstName == User.Identity.Name);
+            ViewBag.user = user;
+            return View();
+        }
+
+        [HttpPost]
+        public ActionResult PunchCard(TimeEntry time)
+        {
+
+            var user = db.Users.FirstOrDefault(u => u.FirstName == User.Identity.Name);
+
+            if (user.Timed)
+            {
+                List<TimeEntry> list = db.TimeEntries.Where(l => l.UserId == user.ID).ToList();
+
+                var times = list.Last();
+
+                if (times.UserId == user.ID)
+                {
+                    time.ID = times.ID;
+                    time.TimeIn = times.TimeIn;
+                    time.UserId = times.UserId;
+                    time.TimeOut = DateTime.Now;
+                    user.Timed = false;
+                    db.TimeEntries.AddOrUpdate(time);
+                }
+
+
+            }
+            else
+            {
+                time.UserId = user.ID;
+                time.TimeIn = DateTime.Now;
+                user.Timed = true;
+                db.TimeEntries.Add(time);
+            }
+
+            db.SaveChanges();
+            return RedirectToAction("Index", "Home");
         }
 
         protected override void Dispose(bool disposing)
