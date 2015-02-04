@@ -1,0 +1,24 @@
+﻿@model ClockIn_ClockOut.Models.TimeEntry
+
+@{
+    ViewBag.Title = "Punch Card";
+}
+
+<h2>PunchCard</h2>
+<p>
+    @if (ViewBag.user.timed)
+    {
+        using (Html.BeginForm("PunchCard", "TimeEntry"))
+        {
+            <button class="btn btn-inverse btn-lg" title="Punch Out" type="submit">Punch Out</button>
+
+        }
+    }
+    else
+    {
+        using (Html.BeginForm("PunchCard", "TimeEntry"))
+        {
+            <button class="btn btn-inverse btn-lg" title="Punch In" type="submit">Punch In</button>
+        }
+    }
+</p>

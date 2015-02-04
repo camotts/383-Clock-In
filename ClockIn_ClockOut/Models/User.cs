@@ -15,5 +15,7 @@ namespace ClockIn_ClockOut.Models
         public string FirstName { get; set; }
         public string LastName { get; set; }
         public int Role { get; set; }
+
+        public bool Timed { get; set; }
     }
 }

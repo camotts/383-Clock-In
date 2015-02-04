@@ -53,6 +53,7 @@ namespace ClockIn_ClockOut.Controllers
         {
             if (ModelState.IsValid)
             {
+                user.Timed = false;
                 user.Role = 1;
                 db.Users.Add(user);
                 db.SaveChanges();
