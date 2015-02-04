@@ -10,6 +10,8 @@
     <title>@ViewBag.Title</title>
 
 
+
+
     <!--This link needs to stay here since this is where the themes are changed-->
     @Styles.Render("~/Content/css")
     @Scripts.Render("~/bundles/modernizr")
@@ -21,37 +23,34 @@
 
     <div class="container body-content">
 
-        @RenderBody()
+        <div class="row pull-right">
 
-        <hr />
-        <footer>
-
-            <label class="pull-left"> @DateTime.Now.Year - Team 6 CMPS383</label>
-
-            <!--This is the Combo box for changing the style-->
-
-
-            <select id="API-DropDown" class="btn btn-default pull-left bottom-drop-down" style="display: none;"></select>
-
-            <div class="row pull-right">
-
-                <div class="btn-group">
-                    <label class="btn btn-primary" id="theme0" onclick="change(0)" style="background-color : white; border-color: black;"></label>
-                    <label class="btn btn-primary" id="theme1" onclick="change(1)" style="background-color : black; border-color: black;"></label>
-                    <label class="btn btn-primary" id="theme2" onclick="change(2)" style="background-color : rgb(184, 184, 184); border-color: black;"></label>
-                    <label class="btn btn-primary" id="theme3" onclick="change(3)" style="background-color : orange; border-color: black;"></label>
-                    <label class="btn btn-primary" id="theme4" onclick="change(4)" style="background-color : blue; border-color: black;"></label>
-                    <label class="btn btn-primary" id="theme5" onclick="change(5)" style="background-color : red; border-color: black;"></label>
-                </div>
-
+            <div class="btn-group" id="btn-group">
+                <label class="btn btn-primary" id="theme0" onclick="change(6)" style="background-color : white; border-color: black;"></label>
+                <label class="btn btn-primary" id="theme1" onclick="change(2)" style="background-color : black; border-color: black;"></label>
+                <label class="btn btn-primary" id="theme2" onclick="change(3)" style="background-color : rgb(184, 184, 184); border-color: black;"></label>
+                <label class="btn btn-primary" id="theme3" onclick="change(13)" style="background-color : orange; border-color: black;"></label>
+                <label class="btn btn-primary" id="theme4" onclick="change(9)" style="background-color : #81b33a; border-color: black;"></label>
+                <label class="btn btn-primary" id="theme5" onclick="change(5)" style="background-color : red; border-color: black;"></label>
             </div>
+        </div>
 
-            <script type="text/javascript">
 
-            </script>
-        </footer>
+            @RenderBody()
 
-    </div>
+            <hr />
+            <footer>
+
+                <label class="pull-left"> @DateTime.Now.Year - Team 6 CMPS383</label>
+
+                <!--This is the Combo box for changing the style-->
+                <select id="API-DropDown" class="btn btn-default pull-left bottom-drop-down" style="display: none; margin-left:20px;"></select>
+
+                <label class="pull-right" id="bootswatch-theme"></label>
+
+            </footer>
+
+        </div>
     @Scripts.Render("~/bundles/jquery")
     @Scripts.Render("~/bundles/bootstrap")
     @RenderSection("scripts", required: false)
