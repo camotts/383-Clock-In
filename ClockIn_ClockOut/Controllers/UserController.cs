@@ -107,6 +107,19 @@ namespace ClockIn_ClockOut.Controllers
         public ActionResult Login(User userLogingIn)
         {
            //This is where to put the Auth cookie and validate the user
+            if (ModelState.IsValid)
+            {
+                User verification = db.Users.FirstOrDefault(u => u.Username == userLogingIn.Username);
+                if (verification != null)
+                {
+                    FormsAuthentication.SetAuthCookie(userLogingIn.Username, false);
+                    return RedirectToAction("PunchCard", "TimeEntry");
+                }
+                else
+                {
+                    ModelState.AddModelError("", "Login data is incorrect!");
+                }
+            }
             return View(userLogingIn);
         }
 

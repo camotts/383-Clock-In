@@ -4,13 +4,17 @@
     ViewBag.Title = "Punch Card";
 }
 
-<h2>PunchCard</h2>
+<script src="~/Scripts/Custom%20Scripts/TimeClock.js"></script>
+
+<h2>Punch Card</h2>
 <p>
+    
+
     @if (ViewBag.user.Timed)
     {
         using (Html.BeginForm("PunchCard", "TimeEntry"))
         {
-            <button class="btn btn-inverse btn-lg" title="Punch Out" type="submit">Punch Out</button>
+            <button class="btn btn-inverse btn-lg" id="punchOut" title="Punch Out" type="button">Punch Out</button>
 
         }
     }
@@ -18,7 +22,10 @@
     {
         using (Html.BeginForm("PunchCard", "TimeEntry"))
         {
-            <button class="btn btn-inverse btn-lg" title="Punch In" type="submit">Punch In</button>
+            <button class="btn btn-inverse btn-lg" id="punchIn" title="Punch In" type="button">Punch In</button>
         }
     }
 </p>
+
+<div id="timeIn"></div>
+<div id="timeOut"></div>

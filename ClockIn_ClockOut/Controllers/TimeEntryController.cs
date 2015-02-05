@@ -115,6 +115,7 @@ namespace ClockIn_ClockOut.Controllers
             db.SaveChanges();
             return RedirectToAction("Index");
         }
+
         [HttpGet]
         public ActionResult PunchCard()
         {
