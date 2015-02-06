@@ -1,31 +1,26 @@
-﻿@model ClockIn_ClockOut.Models.TimeEntry
+﻿@model IEnumerable<ClockIn_ClockOut.Models.TimeEntry>
 
 @{
     ViewBag.Title = "Punch Card";
 }
-
 <script src="~/Scripts/Custom%20Scripts/TimeClock.js"></script>
-
-<h2>Punch Card</h2>
+<h2>PunchCard</h2>
 <p>
     
-
-    @if (ViewBag.user.Timed)
-    {
-        using (Html.BeginForm("PunchCard", "TimeEntry"))
+        @using (Html.BeginForm("PunchCard", "TimeEntry"))
         {
-            <button class="btn btn-inverse btn-lg" id="punchOut" title="Punch Out" type="button">Punch Out</button>
-
+            <center><button class="btn btn-inverse btn-lg" id="punchOut" title="Punch Out" type="button">Punch Out</button></center>
         }
-    }
-    else
-    {
-        using (Html.BeginForm("PunchCard", "TimeEntry"))
+    
+        @using (Html.BeginForm("PunchCard", "TimeEntry"))
         {
-            <button class="btn btn-inverse btn-lg" id="punchIn" title="Punch In" type="button">Punch In</button>
+            <center><button class="btn btn-inverse btn-lg" id="punchIn" title="Punch In" type="button">Punch In</button></center>
         }
-    }
+    
 </p>
 
-<div id="timeIn"></div>
-<div id="timeOut"></div>
+<div id="timesTable">
+    
+</div>
+
+

@@ -222,6 +222,7 @@
     <Content Include="Views\Shared\TopNavbar.cshtml" />
     <Content Include="Views\User\Login.cshtml" />
     <Content Include="Views\TimeEntry\PunchCard.cshtml" />
+    <Content Include="Views\TimeEntry\TimesTable.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />

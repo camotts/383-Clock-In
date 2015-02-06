@@ -15,18 +15,12 @@
             @if (User.Identity.IsAuthenticated)
             {
                 <ul class="nav navbar-nav">
-                    <li>@Html.ActionLink("Time Entry", "Index", "TimeEntry")</li>
+                    <li>@Html.ActionLink("Time Entry", "PunchCard", "TimeEntry")</li>
                     <li>@Html.ActionLink("User", "Index", "User")</li>
                     <li>@Html.ActionLink("Role", "Index", "Role")</li>
                 </ul>
                 <ul class="nav navbar-nav navbar-right">
-                    <li> @Html.ActionLink("Users", "Index", "User")</li>
-                </ul>
-            }
-            else
-            {
-                <ul class="nav navbar-nav navbar-right">
-                    <li> @Html.ActionLink("Login", "Login", "User")</li>
+                    <li> @Html.ActionLink("Log Out", "Logout", "User")</li>
                 </ul>
             }
         </div>

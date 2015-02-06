@@ -123,7 +123,13 @@ namespace ClockIn_ClockOut.Controllers
             return View(userLogingIn);
         }
 
-
+        [HttpGet]
+        public ActionResult Logout()
+        {
+            Session.Clear();
+            FormsAuthentication.SignOut();
+            return RedirectToAction("Login", "User");
+        }
 
         // GET: Users/Delete/5
         public ActionResult Delete(int? id)
