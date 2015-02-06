@@ -37,9 +37,6 @@ $.get("http://api.bootswatch.com/3/", function (data) {
             $("link").attr("href", theme.css);
         }
     }).change();
-
-
-
 }, "json")
 
 

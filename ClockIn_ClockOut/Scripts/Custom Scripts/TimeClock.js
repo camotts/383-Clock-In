@@ -106,15 +106,19 @@
 
     function partial() {
         var table = $("#timesTable");
+        console.log("hit after var table");
         var ajaxHandler = $.ajax({
             type: 'Get',
-            url: '/TimeEntry/GetPartial',
+            url: '/TimeEntry/getPartial',
             cache: false
         });
         ajaxHandler.done(function (result) {
+            console.log(result);
             table.html(result);
         });
         ajaxHandler.fail(function (xhr, ajaxOptions, thrownError) {
+            console.log(thrownError);
+            console.log(xhr);
             alert('Fail');
         });
     }

@@ -32,8 +32,11 @@ namespace ClockIn_ClockOut.Migrations
             IList<Role> defaultRole = new List<Role>();
 
             defaultRole.Add(new Role() { ID = 2, Name = "Admin" });
-            defaultRole.Add(new Role() { ID = 2, Name = "User" });
+            defaultRole.Add(new Role() { ID = 1, Name = "User" });
 
+            foreach (Role std in defaultRole)
+                context.Roles.AddOrUpdate(std);
+            context.SaveChanges();
 
         }
     }

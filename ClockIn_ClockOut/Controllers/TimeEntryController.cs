@@ -11,6 +11,7 @@ using System.Data.Entity.Migrations;
 
 namespace ClockIn_ClockOut.Controllers
 {
+    //[AuthorizeUser(AccessLevel = "Admin")]
     public class TimeEntryController : Controller
     {
         private DatabaseContext db = new DatabaseContext();
@@ -28,11 +29,14 @@ namespace ClockIn_ClockOut.Controllers
             {
                 return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
             }
+
             TimeEntry timeEntry = db.TimeEntries.Find(id);
+
             if (timeEntry == null)
             {
                 return HttpNotFound();
             }
+
             return View(timeEntry);
         }
 
@@ -115,6 +119,7 @@ namespace ClockIn_ClockOut.Controllers
             db.SaveChanges();
             return RedirectToAction("Index");
         }
+
         [Authorize]
         [HttpGet]
         public ActionResult PunchCard()
@@ -124,7 +129,7 @@ namespace ClockIn_ClockOut.Controllers
             ViewBag.user = user;
 
             //grab all the time entries for the user
-            List<TimeEntry> TimeEntries = db.TimeEntries.Where(x => x.UserId == user.ID).ToList();
+            List<TimeEntry> TimeEntries = db.TimeEntries.Where(x => x.UserId == user.ID).OrderByDescending(o => o.TimeIn).ToList();
             ViewBag.TimeEntries = TimeEntries;
 
             //for the display name, put the full name together
@@ -134,8 +139,7 @@ namespace ClockIn_ClockOut.Controllers
             return View(TimeEntries);
         }
 
-        
-
+        [Authorize]
         [HttpPost]
         public ActionResult PunchCard(TimeEntry time)
         {
@@ -169,17 +173,19 @@ namespace ClockIn_ClockOut.Controllers
             }
 
             db.SaveChanges();
-            return RedirectToAction("Index", "Home");
+            return RedirectToAction("PunchCard", "TimeEntry");
         }
 
+        
+        [Authorize]
+        [HttpGet]
         public ActionResult getPartial()
         {
-            //Grab the user
             var user = db.Users.FirstOrDefault(u => u.Username == User.Identity.Name);
             ViewBag.user = user;
 
             //grab all the time entries for the user
-            List<TimeEntry> TimeEntries = db.TimeEntries.Where(x => x.UserId == user.ID).ToList();
+            List<TimeEntry> TimeEntries = db.TimeEntries.Where(x => x.UserId == user.ID).OrderByDescending(o => o.TimeIn).ToList();
             ViewBag.TimeEntries = TimeEntries;
 
             //for the display name, put the full name together
@@ -187,11 +193,12 @@ namespace ClockIn_ClockOut.Controllers
             ViewBag.fullName = cFullName;
 
             return PartialView("TimesTable",TimeEntries);
-
         }
 
+        [Authorize]
         [HttpGet]
-        public bool getClockBool(){
+        public bool getClockBool()
+        {
             var user = db.Users.FirstOrDefault(u => u.Username == User.Identity.Name);
             return user.Timed;
         }
