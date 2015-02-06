@@ -53,13 +53,18 @@ namespace ClockIn_ClockOut.Controllers
         {
             if (ModelState.IsValid)
             {
+                if(db.Users.Any(u=> u.Username == user.Username)){
+                    ViewBag.Duplicate="Username is not available";
+                    ViewBag.RoleId = new SelectList(db.Roles, "RoleId", "RoleName");
+                    return View(user);
+                }       
                 user.Timed = false;
                 user.Role = 1;
                 db.Users.Add(user);
                 db.SaveChanges();
                 return RedirectToAction("Index");
+            
             }
-
             return View(user);
         }
 
