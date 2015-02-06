@@ -119,7 +119,7 @@
     <Compile Include="App_Start\BundleConfig.cs" />
     <Compile Include="App_Start\FilterConfig.cs" />
     <Compile Include="App_Start\RouteConfig.cs" />
-    <Compile Include="Controllers\HomeController.cs" />
+    <Compile Include="Controllers\AuthorizeUserAttribute.cs" />
     <Compile Include="Controllers\RoleController.cs" />
     <Compile Include="Controllers\TimeEntryController.cs" />
     <Compile Include="Controllers\UserController.cs" />
@@ -147,6 +147,7 @@
       <DependentUpon>201502041819309_Context Update 5.cs</DependentUpon>
     </Compile>
     <Compile Include="Migrations\Configuration.cs" />
+    <Compile Include="Models\AuthorizeUserAttribute.cs" />
     <Compile Include="Models\DatabaseContext.cs" />
     <Compile Include="Models\Role.cs" />
     <Compile Include="Models\TimeEntry.cs" />
@@ -188,9 +189,6 @@
     <Content Include="Views\_ViewStart.cshtml" />
     <Content Include="Views\Shared\Error.cshtml" />
     <Content Include="Views\Shared\_Layout.cshtml" />
-    <Content Include="Views\Home\About.cshtml" />
-    <Content Include="Views\Home\Contact.cshtml" />
-    <Content Include="Views\Home\Index.cshtml" />
     <Content Include="Scripts\jquery-1.10.2.min.map" />
     <Content Include="Views\User\Create.cshtml" />
     <Content Include="Views\User\Delete.cshtml" />

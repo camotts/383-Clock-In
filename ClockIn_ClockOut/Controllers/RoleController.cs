@@ -10,6 +10,7 @@ using ClockIn_ClockOut.Models;
 
 namespace ClockIn_ClockOut.Controllers
 {
+    [AuthorizeUser(AccessLevel = "Admin")]
     public class RoleController : Controller
     {
         private DatabaseContext db = new DatabaseContext();

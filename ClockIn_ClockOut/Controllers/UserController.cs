@@ -12,7 +12,7 @@ using System.Web.Security;
 
 namespace ClockIn_ClockOut.Controllers
 {
-
+    [AuthorizeUser(AccessLevel = "Admin")]
     public class UserController : Controller
     {
         private DatabaseContext db = new DatabaseContext();
