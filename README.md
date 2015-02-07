@@ -8,7 +8,7 @@ Ok, to get this project started we will be breaking this project into individual
 
 **Cameron and Patrick:** Please work on setting up the the database, views, time-stamping and scaffolding
 
-**Bibidh:** Please work on the Crypto hashing of passwords, and make sure usernames are uniquely enforced
+**Bibidth:** Please work on the Crypto hashing of passwords, and make sure usernames are uniquely enforced
 
 **Daniel:** Please work and set the Authentication Cookies, also use the Authorize attribute to make the website secure.
 
