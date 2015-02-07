@@ -8,6 +8,7 @@ using System.Web;
 using System.Web.Mvc;
 using ClockIn_ClockOut.Models;
 using System.Web.Security;
+using System.Web.Helpers;
 
 
 namespace ClockIn_ClockOut.Controllers
@@ -57,7 +58,8 @@ namespace ClockIn_ClockOut.Controllers
                     ViewBag.Duplicate="Username is not available";
                     ViewBag.RoleId = new SelectList(db.Roles, "RoleId", "RoleName");
                     return View(user);
-                }       
+                }
+                user.Password = Crypto.HashPassword(user.Password);
                 user.Timed = false;
                 user.Role = 1;
                 db.Users.Add(user);
@@ -115,8 +117,11 @@ namespace ClockIn_ClockOut.Controllers
             if (ModelState.IsValid)
             {
                 User verification = db.Users.FirstOrDefault(u => u.Username == userLogingIn.Username);
-                if (verification != null)
-                {
+                Boolean isPasswordVerified=false;
+                if (verification != null){
+                    isPasswordVerified=(verification.Password!=null && Crypto.VerifyHashedPassword(verification.Password,userLogingIn.Password)==true);
+                }
+                if(isPasswordVerified==true){
                     FormsAuthentication.SetAuthCookie(userLogingIn.Username, false);
                     return RedirectToAction("PunchCard", "TimeEntry");
                 }
