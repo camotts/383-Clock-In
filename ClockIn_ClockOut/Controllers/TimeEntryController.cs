@@ -141,7 +141,7 @@ namespace ClockIn_ClockOut.Controllers
 
         [Authorize]
         [HttpPost]
-        public ActionResult PunchCard(TimeEntry time)
+        public ActionResult PunchCard(TimeEntry time, String timeDate)
         {
 
             var user = db.Users.FirstOrDefault(u => u.Username == User.Identity.Name);
@@ -157,7 +157,7 @@ namespace ClockIn_ClockOut.Controllers
                     time.ID = times.ID;
                     time.TimeIn = times.TimeIn;
                     time.UserId = times.UserId;
-                    time.TimeOut = DateTime.Now;
+                    time.TimeOut = Convert.ToDateTime(timeDate);
                     user.Timed = false;
                     db.TimeEntries.AddOrUpdate(time);
                 }
@@ -167,13 +167,13 @@ namespace ClockIn_ClockOut.Controllers
             else
             {
                 time.UserId = user.ID;
-                time.TimeIn = DateTime.Now;
+                time.TimeIn = Convert.ToDateTime(timeDate);
                 user.Timed = true;
                 db.TimeEntries.Add(time);
             }
 
             db.SaveChanges();
-            return RedirectToAction("PunchCard", "TimeEntry");
+            return getPartial();
         }
 
         
@@ -186,13 +186,20 @@ namespace ClockIn_ClockOut.Controllers
 
             //grab all the time entries for the user
             List<TimeEntry> TimeEntries = db.TimeEntries.Where(x => x.UserId == user.ID).OrderByDescending(o => o.TimeIn).ToList();
+
+            foreach (var item in TimeEntries)
+            {
+                item.TimeIn = item.TimeIn.ToLocalTime();
+                item.TimeOut = item.TimeOut.ToLocalTime();
+            }
+
             ViewBag.TimeEntries = TimeEntries;
 
             //for the display name, put the full name together
             string cFullName = user.FirstName + " " + user.LastName;
             ViewBag.fullName = cFullName;
 
-            return PartialView("TimesTable",TimeEntries);
+            return PartialView("TimesTable", TimeEntries);
         }
 
         [Authorize]
