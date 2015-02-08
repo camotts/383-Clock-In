@@ -22,5 +22,8 @@ namespace ClockIn_ClockOut.Models
         [Display(Name = "Time Out")]
         [Column(TypeName = "DateTime2")]
         public DateTime TimeOut { get; set; }
+
+        [Display(Name = "Work Hours")]
+        public int timeMinutes { get; set; }
     }
 }

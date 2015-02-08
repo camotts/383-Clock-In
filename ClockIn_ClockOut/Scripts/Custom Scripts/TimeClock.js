@@ -30,15 +30,16 @@ $(document).ready(function () {
                 $("#punchOut").hide();
                 $("#punchIn").hide();
                 $('#punchIn').toggle();
-
+                
             }
             else {
                 console.log("Clock OUt");
                 $("#punchIn").hide();
                 $("#punchOut").hide();
                 $('#punchOut').toggle();
-
+                
             }
+
         }
     });
     partial();
@@ -61,7 +62,15 @@ $(document).ready(function () {
         console.log("Toggle Punch In off");
         $("#punchIn").toggle();
 
+        var enableSubmit = function (ele) {
+            $(ele).removeAttr("disabled");
+        }
 
+        $("#punchOut").click(function () {
+            var that = this;
+            $(this).attr("disabled", true);
+            setTimeout(function () { enableSubmit(that) }, 60000);
+        });
 
     });
 });
@@ -85,7 +94,15 @@ $(document).ready(function () {
         console.log("Toggle punch out off");
         $("#punchOut").toggle();
 
+        var enableSubmit = function (ele) {
+            $(ele).removeAttr("disabled");
+        }
 
+        $("#punchIn").click(function () {
+            var that = this;
+            $(this).attr("disabled", true);
+            setTimeout(function () { enableSubmit(that) }, 60000);
+        });
     });
 
 });
@@ -127,3 +144,13 @@ function partial() {
         alert('Fail');
     });
 }
+
+setInterval(function () {
+    function r(el, deg) {
+        el.setAttribute('transform', 'rotate(' + deg + ' 50 50)')
+    }
+    var d = new Date()
+    r(sec, 6 * d.getSeconds())
+    r(min, 6 * d.getMinutes())
+    r(hour, 30 * (d.getHours() % 12) + d.getMinutes() / 2)
+}, 1000)

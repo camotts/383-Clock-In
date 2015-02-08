@@ -134,6 +134,7 @@ namespace ClockIn_ClockOut.Controllers
         }
 
         [HttpGet]
+        [AllowAnonymous]
         public ActionResult Logout()
         {
             Session.Clear();

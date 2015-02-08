@@ -11,7 +11,7 @@ using System.Data.Entity.Migrations;
 
 namespace ClockIn_ClockOut.Controllers
 {
-    //[AuthorizeUser(AccessLevel = "Admin")]
+    [AuthorizeUser(AccessLevel = "Admin")]
     public class TimeEntryController : Controller
     {
         private DatabaseContext db = new DatabaseContext();
@@ -159,7 +159,16 @@ namespace ClockIn_ClockOut.Controllers
                     time.UserId = times.UserId;
                     time.TimeOut = Convert.ToDateTime(timeDate);
                     user.Timed = false;
-                    db.TimeEntries.AddOrUpdate(time);
+                    time.timeMinutes = time.TimeOut.Subtract(time.TimeIn).Minutes;
+                    if (time.timeMinutes < 1)
+                    {
+                        var toBeDeleted = db.TimeEntries.FirstOrDefault(t => t.ID == time.ID);
+                        db.TimeEntries.Remove(toBeDeleted);
+                    }
+                    else
+                    {
+                        db.TimeEntries.AddOrUpdate(time);
+                    }
                 }
 
 

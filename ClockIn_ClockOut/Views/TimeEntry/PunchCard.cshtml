@@ -4,20 +4,58 @@
     ViewBag.Title = "Punch Card";
 }
 <script src="~/Scripts/Custom%20Scripts/TimeClock.js"></script>
+
+<style>
+     #clock-container { 
+      display: inline-block;
+      position: relative;
+      width: 20%;
+      padding-bottom: .1%;
+      vertical-align: middle;
+      overflow: hidden;
+
+    } 
+    #face { stroke-width: 2px; stroke: #fff; }
+    #hour, #min, #sec { 
+      stroke-width: 1px;
+      fill: #333;
+      stroke: #555;
+    }
+    #sec { stroke: #f55; }
+</style>
+
 <h2>PunchCard</h2>
-<p>
-    
+
+<center>
+    <div id="clock-container">
+        <svg id="clock" viewBox="0 0 100 100">
+            <circle id="face" cx="50" cy="50" r="45" />
+            <g id="hands">
+                <rect id="hour" x="47.5" y="12.5" width="5" height="40" rx="2.5" ry="2.55" />
+                <rect id="min" x="48.5" y="12.5" width="3" height="40" rx="2" ry="2" />
+                <line id="sec" x1="50" y1="50" x2="50" y2="16" />
+            </g>
+        </svg>
+    </div>
+</center>
+
+
+
+<center>
+    <p>
+
         @using (Html.BeginForm("PunchCard", "TimeEntry"))
         {
             <center><button class="btn btn-inverse btn-lg" id="punchOut" title="Punch Out" type="button">Punch Out</button></center>
         }
-    
+
         @using (Html.BeginForm("PunchCard", "TimeEntry"))
         {
             <center><button class="btn btn-inverse btn-lg" id="punchIn" title="Punch In" type="button">Punch In</button></center>
         }
-    
-</p>
+
+    </p>
+</center>
 
 <div id="timesTable">
     

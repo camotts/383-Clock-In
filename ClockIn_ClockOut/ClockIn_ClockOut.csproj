@@ -146,6 +146,10 @@
     <Compile Include="Migrations\201502041819309_Context Update 5.Designer.cs">
       <DependentUpon>201502041819309_Context Update 5.cs</DependentUpon>
     </Compile>
+    <Compile Include="Migrations\201502082245588_context update 6.cs" />
+    <Compile Include="Migrations\201502082245588_context update 6.Designer.cs">
+      <DependentUpon>201502082245588_context update 6.cs</DependentUpon>
+    </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Models\AuthorizeUserAttribute.cs" />
     <Compile Include="Models\DatabaseContext.cs" />
@@ -247,6 +251,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Migrations\201502041819309_Context Update 5.resx">
       <DependentUpon>201502041819309_Context Update 5.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201502082245588_context update 6.resx">
+      <DependentUpon>201502082245588_context update 6.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <PropertyGroup>

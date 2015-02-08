@@ -14,3 +14,23 @@ select,
 textarea {
     max-width: 280px;
 }
+
+body {
+
+}
+#clock-container { 
+  display: inline-block;
+  position: relative;
+  width: 20%;
+  padding-bottom: .1%;
+  vertical-align: middle;
+  overflow: hidden;
+
+} 
+#face { stroke-width: 2px; stroke: #fff; }
+#hour, #min, #sec { 
+  stroke-width: 1px;
+  fill: #333;
+  stroke: #555;
+}
+#sec { stroke: #f55; }
