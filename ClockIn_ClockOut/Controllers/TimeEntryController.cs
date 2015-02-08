@@ -34,6 +34,12 @@ namespace ClockIn_ClockOut.Controllers
 
             TimeEntry timeEntry = db.TimeEntries.Find(id);
 
+            //for the display name, put the full name together
+            var user = db.Users.FirstOrDefault(u => u.Username == User.Identity.Name);
+
+            string cFullName = user.FirstName + " " + user.LastName;
+            ViewBag.fullName = cFullName;
+
             if (timeEntry == null)
             {
                 return HttpNotFound();

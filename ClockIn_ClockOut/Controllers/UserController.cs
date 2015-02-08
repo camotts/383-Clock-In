@@ -119,6 +119,7 @@ namespace ClockIn_ClockOut.Controllers
                 User verification = db.Users.FirstOrDefault(u => u.Username == userLogingIn.Username);
                 Boolean isPasswordVerified=false;
                 if (verification != null){
+                    if (userLogingIn.Password != null && userLogingIn.Password != "")
                     isPasswordVerified=(verification.Password!=null && Crypto.VerifyHashedPassword(verification.Password,userLogingIn.Password)==true);
                 }
                 if(isPasswordVerified==true){
