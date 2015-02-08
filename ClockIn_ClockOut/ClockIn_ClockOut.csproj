@@ -165,6 +165,7 @@
     <Content Include="Scripts\bootstrap.min.js" />
     <None Include="Scripts\jquery-1.10.2.intellisense.js" />
     <Content Include="Scripts\Custom Scripts\bootswatch.js" />
+    <Content Include="Scripts\Custom Scripts\header.js" />
     <Content Include="Scripts\Custom Scripts\TimeClock.js" />
     <Content Include="Scripts\jquery-1.10.2.js" />
     <Content Include="Scripts\jquery-1.10.2.min.js" />

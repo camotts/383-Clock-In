@@ -6,7 +6,7 @@
                 <span class="icon-bar"></span>
                 <span class="icon-bar"></span>
             </button>
-           
+
             <div class="navbar-brand">
                 <label>Team 6</label>
             </div>
@@ -16,10 +16,10 @@
             {
                 <ul class="nav navbar-nav">
                     <li>@Html.ActionLink("Time Entry", "PunchCard", "TimeEntry")</li>
-                    <li>@Html.ActionLink("User", "Index", "User")</li>
-                    <li>@Html.ActionLink("Role", "Index", "Role")</li>
+                    <li id="UserLink">@Html.ActionLink("User", "Index", "User")</li>
                 </ul>
                 <ul class="nav navbar-nav navbar-right">
+                    <li><label class="navbar-brand">@User.Identity.Name</label></li>
                     <li> @Html.ActionLink("Log Out", "Logout", "User")</li>
                 </ul>
             }
@@ -27,3 +27,4 @@
     </div>
 </div>
 
+<script src="~/Scripts/Custom%20Scripts/Header.js"></script>

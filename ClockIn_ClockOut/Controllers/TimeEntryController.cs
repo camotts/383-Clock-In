@@ -11,16 +11,18 @@ using System.Data.Entity.Migrations;
 
 namespace ClockIn_ClockOut.Controllers
 {
-    //[AuthorizeUser(AccessLevel = "Admin")]
+    
     public class TimeEntryController : Controller
     {
         private DatabaseContext db = new DatabaseContext();
 
+        [AuthorizeUser(AccessLevel = "Admin")]
         // GET: TimeEntries
         public ActionResult Index()
         {
             return View(db.TimeEntries.ToList());
         }
+
 
         // GET: TimeEntries/Details/5
         public ActionResult Details(int? id)
@@ -40,29 +42,8 @@ namespace ClockIn_ClockOut.Controllers
             return View(timeEntry);
         }
 
-        // GET: TimeEntries/Create
-        public ActionResult Create()
-        {
-            return View();
-        }
 
-        // POST: TimeEntries/Create
-        // To protect from overposting attacks, please enable the specific properties you want to bind to, for 
-        // more details see http://go.microsoft.com/fwlink/?LinkId=317598.
-        [HttpPost]
-        [ValidateAntiForgeryToken]
-        public ActionResult Create([Bind(Include = "ID,UserId,TimeIn,TimeOut")] TimeEntry timeEntry)
-        {
-            if (ModelState.IsValid)
-            {
-                db.TimeEntries.Add(timeEntry);
-                db.SaveChanges();
-                return RedirectToAction("Index");
-            }
-
-            return View(timeEntry);
-        }
-
+        [AuthorizeUser(AccessLevel = "Admin")]
         // GET: TimeEntries/Edit/5
         public ActionResult Edit(int? id)
         {
@@ -78,6 +59,7 @@ namespace ClockIn_ClockOut.Controllers
             return View(timeEntry);
         }
 
+        [AuthorizeUser(AccessLevel = "Admin")]
         // POST: TimeEntries/Edit/5
         // To protect from overposting attacks, please enable the specific properties you want to bind to, for 
         // more details see http://go.microsoft.com/fwlink/?LinkId=317598.
@@ -94,6 +76,7 @@ namespace ClockIn_ClockOut.Controllers
             return View(timeEntry);
         }
 
+        [AuthorizeUser(AccessLevel = "Admin")]
         // GET: TimeEntries/Delete/5
         public ActionResult Delete(int? id)
         {
@@ -109,6 +92,7 @@ namespace ClockIn_ClockOut.Controllers
             return View(timeEntry);
         }
 
+        [AuthorizeUser(AccessLevel = "Admin")]
         // POST: TimeEntries/Delete/5
         [HttpPost, ActionName("Delete")]
         [ValidateAntiForgeryToken]
@@ -177,7 +161,7 @@ namespace ClockIn_ClockOut.Controllers
         }
 
         
-        [Authorize]
+        [AllowAnonymous]
         [HttpGet]
         public ActionResult getPartial()
         {

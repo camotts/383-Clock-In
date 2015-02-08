@@ -133,6 +133,7 @@ namespace ClockIn_ClockOut.Controllers
             return View(userLogingIn);
         }
 
+        [AllowAnonymous]
         [HttpGet]
         public ActionResult Logout()
         {
@@ -165,6 +166,25 @@ namespace ClockIn_ClockOut.Controllers
             db.Users.Remove(user);
             db.SaveChanges();
             return RedirectToAction("Index");
+        }
+        
+        [AllowAnonymous]
+        public bool isAdmin()
+        {
+            if (User.Identity.IsAuthenticated)
+            {
+                string userForRoleCheck = User.Identity.Name;
+                if (userForRoleCheck != "" && userForRoleCheck != null)
+                {
+                    var grabUser = db.Users.FirstOrDefault(x => userForRoleCheck == x.Username);
+
+                    if (grabUser.Role == 2)
+                    {
+                        return true;
+                    }
+                }
+            }
+            return false;
         }
 
         protected override void Dispose(bool disposing)
