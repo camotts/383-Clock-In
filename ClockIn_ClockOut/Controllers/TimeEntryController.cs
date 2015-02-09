@@ -202,6 +202,16 @@ namespace ClockIn_ClockOut.Controllers
             string cFullName = user.FirstName + " " + user.LastName;
             ViewBag.fullName = cFullName;
 
+            //Is the user an admin??
+            bool isAdmin = false;
+            if (user.Role == 2)
+            {
+                isAdmin = true;
+            }
+
+            ViewBag.isAdmin = isAdmin;
+
+
             return PartialView("TimesTable", TimeEntries);
         }
 
@@ -223,6 +233,14 @@ namespace ClockIn_ClockOut.Controllers
             }
 
 
+            //Is the user an admin??
+            bool isAdmin = false;
+            if (user.Role == 2)
+            {
+                isAdmin = true;
+            }
+
+            ViewBag.isAdmin = isAdmin;
 
             //for the display name, put the full name together
             string cFullName = user.FirstName + " " + user.LastName;
@@ -236,9 +254,9 @@ namespace ClockIn_ClockOut.Controllers
         [Authorize]
         public TimeSpan getHours()
         {
-            TimeSpan total = db.TimeEntries.FirstOrDefault(u => u.ID == 1).timeMinutes;
+            TimeSpan total = DateTime.Now - DateTime.Now;
             var user = db.Users.FirstOrDefault(u => u.Username == User.Identity.Name);
-            foreach (var item in db.TimeEntries.Where(x => x.UserId == user.ID).OrderBy(x => x.ID > 0).Skip(1))
+            foreach (var item in db.TimeEntries.Where(x => x.UserId == user.ID).OrderBy(x => x.ID > 0))
             {
                 total += item.timeMinutes;
             }
