@@ -24,6 +24,7 @@ namespace ClockIn_ClockOut.Models
         public DateTime TimeOut { get; set; }
 
         [Display(Name = "Work Hours")]
-        public int timeMinutes { get; set; }
+        [DisplayFormat(DataFormatString="{0:hh\\:mm}")]
+        public TimeSpan timeMinutes { get; set; }
     }
 }

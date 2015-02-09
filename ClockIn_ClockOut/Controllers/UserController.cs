@@ -67,6 +67,10 @@ namespace ClockIn_ClockOut.Controllers
                 return RedirectToAction("Index");
             
             }
+            else
+            {
+                ModelState.AddModelError("", "Username already Exists");
+            }
             return View(user);
         }
 
@@ -94,6 +98,10 @@ namespace ClockIn_ClockOut.Controllers
         {
             if (ModelState.IsValid)
             {
+                var entry = db.Entry(user);
+                entry.Property(u => u.Password).IsModified = false;
+
+                user.Password = Crypto.HashPassword(user.Password);
                 db.Entry(user).State = EntityState.Modified;
                 db.SaveChanges();
                 return RedirectToAction("Index");
@@ -134,8 +142,8 @@ namespace ClockIn_ClockOut.Controllers
             return View(userLogingIn);
         }
 
-        [HttpGet]
         [AllowAnonymous]
+        [HttpGet]
         public ActionResult Logout()
         {
             Session.Clear();
@@ -186,6 +194,14 @@ namespace ClockIn_ClockOut.Controllers
                 }
             }
             return false;
+        }
+
+        [AllowAnonymous]
+        public int getCount()
+        {
+            var count = db.Users.Where(u => u.ID > 0).Count();
+
+            return count;
         }
 
         protected override void Dispose(bool disposing)

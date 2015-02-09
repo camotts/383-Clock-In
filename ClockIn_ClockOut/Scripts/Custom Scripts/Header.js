@@ -19,4 +19,31 @@ $(document).ready(function () {
         console.log(thrownError);
         console.log(xhr);
     });
+
+
+    time();
+
 });
+
+
+setInterval(function () {
+    time();
+}, 10000)
+
+function time(){
+    var timeLog = $.ajax({
+        url: '/TimeEntry/getHours',
+        cache: false
+    });
+
+    timeLog.done(function (result) {
+        console.log(result)
+        $("#hoursLogged").html(result);
+
+    });
+
+    timeLog.fail(function (xhr, ajaxOptions, thrownError) {
+        console.log(thrownError);
+        console.log(xhr);
+    });
+};

@@ -125,29 +125,9 @@
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
-    <Compile Include="Migrations\201502011951483_InitialCreate.cs" />
-    <Compile Include="Migrations\201502011951483_InitialCreate.Designer.cs">
-      <DependentUpon>201502011951483_InitialCreate.cs</DependentUpon>
-    </Compile>
-    <Compile Include="Migrations\201502020621224_Initial.cs" />
-    <Compile Include="Migrations\201502020621224_Initial.Designer.cs">
-      <DependentUpon>201502020621224_Initial.cs</DependentUpon>
-    </Compile>
-    <Compile Include="Migrations\201502040338212_Context Update 3.cs" />
-    <Compile Include="Migrations\201502040338212_Context Update 3.Designer.cs">
-      <DependentUpon>201502040338212_Context Update 3.cs</DependentUpon>
-    </Compile>
-    <Compile Include="Migrations\201502040445018_ContextName4.cs" />
-    <Compile Include="Migrations\201502040445018_ContextName4.Designer.cs">
-      <DependentUpon>201502040445018_ContextName4.cs</DependentUpon>
-    </Compile>
-    <Compile Include="Migrations\201502041819309_Context Update 5.cs" />
-    <Compile Include="Migrations\201502041819309_Context Update 5.Designer.cs">
-      <DependentUpon>201502041819309_Context Update 5.cs</DependentUpon>
-    </Compile>
-    <Compile Include="Migrations\201502082245588_context update 6.cs" />
-    <Compile Include="Migrations\201502082245588_context update 6.Designer.cs">
-      <DependentUpon>201502082245588_context update 6.cs</DependentUpon>
+    <Compile Include="Migrations\201502090323196_Context Update BIG.cs" />
+    <Compile Include="Migrations\201502090323196_Context Update BIG.Designer.cs">
+      <DependentUpon>201502090323196_Context Update BIG.cs</DependentUpon>
     </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Models\AuthorizeUserAttribute.cs" />
@@ -170,6 +150,7 @@
     <Content Include="Scripts\bootstrap.min.js" />
     <Content Include="Scripts\Custom Scripts\bootswatch.js" />
     <Content Include="Scripts\Custom Scripts\Header.js" />
+    <Content Include="Scripts\Custom Scripts\Indexing.js" />
     <Content Include="Scripts\Custom Scripts\TimeClock.js" />
     <Content Include="fonts\glyphicons-halflings-regular.woff" />
     <Content Include="fonts\glyphicons-halflings-regular.ttf" />
@@ -244,23 +225,8 @@
     <None Include="Project_Readme.html" />
   </ItemGroup>
   <ItemGroup>
-    <EmbeddedResource Include="Migrations\201502011951483_InitialCreate.resx">
-      <DependentUpon>201502011951483_InitialCreate.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="Migrations\201502020621224_Initial.resx">
-      <DependentUpon>201502020621224_Initial.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="Migrations\201502040338212_Context Update 3.resx">
-      <DependentUpon>201502040338212_Context Update 3.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="Migrations\201502040445018_ContextName4.resx">
-      <DependentUpon>201502040445018_ContextName4.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="Migrations\201502041819309_Context Update 5.resx">
-      <DependentUpon>201502041819309_Context Update 5.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="Migrations\201502082245588_context update 6.resx">
-      <DependentUpon>201502082245588_context update 6.cs</DependentUpon>
+    <EmbeddedResource Include="Migrations\201502090323196_Context Update BIG.resx">
+      <DependentUpon>201502090323196_Context Update BIG.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <PropertyGroup>

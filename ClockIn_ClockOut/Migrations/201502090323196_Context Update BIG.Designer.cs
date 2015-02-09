@@ -7,13 +7,13 @@ namespace ClockIn_ClockOut.Migrations
     using System.Resources;
     
     [GeneratedCode("EntityFramework.Migrations", "6.1.2-31219")]
-    public sealed partial class Initial : IMigrationMetadata
+    public sealed partial class ContextUpdateBIG : IMigrationMetadata
     {
-        private readonly ResourceManager Resources = new ResourceManager(typeof(Initial));
+        private readonly ResourceManager Resources = new ResourceManager(typeof(ContextUpdateBIG));
         
         string IMigrationMetadata.Id
         {
-            get { return "201502020621224_Initial"; }
+            get { return "201502090323196_Context Update BIG"; }
         }
         
         string IMigrationMetadata.Source

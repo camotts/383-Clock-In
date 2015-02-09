@@ -22,18 +22,14 @@ $(document).ready(function () {
         cache: false,
         success: function (result) {
             var temp = result;
-            console.log(temp);
             var what = (temp != true);
-            console.log(what);
             if (temp != "True") {
-                console.log("Clock In");
                 $("#punchOut").hide();
                 $("#punchIn").hide();
                 $('#punchIn').toggle();
                 
             }
             else {
-                console.log("Clock OUt");
                 $("#punchIn").hide();
                 $("#punchOut").hide();
                 $('#punchOut').toggle();
@@ -49,17 +45,16 @@ $(document).ready(function () {
 
     $("#punchIn").click(function () {
 
-        console.log("Out Hit");
+
         var timeIn = $('#timeIn');
         timeIn.text(moment.utc().format('YYYY-MM-DD HH:mm:ss'));
 
 
         ajaxPost();
 
-        console.log("Punch In button click");
-        console.log("Toggle punch put on");
+
         $("#punchOut").toggle();
-        console.log("Toggle Punch In off");
+
         $("#punchIn").toggle();
 
         var enableSubmit = function (ele) {
@@ -69,7 +64,12 @@ $(document).ready(function () {
         $("#punchOut").click(function () {
             var that = this;
             $(this).attr("disabled", true);
-            setTimeout(function () { enableSubmit(that) }, 60000);
+            setTimeout(function () { enableSubmit(that) }, 80000);
+        });
+        $("#punchIn").click(function () {
+            var that = this;
+            $(this).attr("disabled", true);
+            setTimeout(function () { enableSubmit(that) }, 80000);
         });
 
     });
@@ -79,7 +79,6 @@ $(document).ready(function () {
 $(document).ready(function () {
     $("#punchOut").click(function () {
         partial();
-        console.log("Out Hit");
         var timeOut = $('#timeOut');
         timeOut.text(moment.utc().format('YYYY-MM-DD HH:mm:ss'));
 
@@ -87,11 +86,9 @@ $(document).ready(function () {
         ajaxPost();
 
 
-        console.log("Punch out button click");
-        console.log("Toggle punch in on");
 
         $("#punchIn").toggle();
-        console.log("Toggle punch out off");
+
         $("#punchOut").toggle();
 
         var enableSubmit = function (ele) {
@@ -101,7 +98,12 @@ $(document).ready(function () {
         $("#punchIn").click(function () {
             var that = this;
             $(this).attr("disabled", true);
-            setTimeout(function () { enableSubmit(that) }, 60000);
+            setTimeout(function () { enableSubmit(that) }, 80000);
+        });
+        $("#punchOut").click(function () {
+            var that = this;
+            $(this).attr("disabled", true);
+            setTimeout(function () { enableSubmit(that) }, 80000);
         });
     });
 
@@ -135,7 +137,7 @@ function partial() {
         cache: false,
     });
     ajaxHandler.done(function (result) {
-        console.log(result);
+
 
         table.html(result);
     });

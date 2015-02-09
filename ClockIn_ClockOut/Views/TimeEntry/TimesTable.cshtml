@@ -29,7 +29,7 @@
                 @Html.DisplayFor(modelItem => item.TimeOut)
             </td>
             <td>
-                @Html.DisplayFor(modelItem => item.timeMinutes)
+                @Html.DisplayFor(modelItem => item.timeMinutes).ToString()
             </td>
             <td>
                 @Html.ActionLink("Edit", "Edit", new { id = item.ID }, new { @class = "btn btn-warning btn-xs" })

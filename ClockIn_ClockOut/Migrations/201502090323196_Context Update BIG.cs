@@ -3,7 +3,7 @@ namespace ClockIn_ClockOut.Migrations
     using System;
     using System.Data.Entity.Migrations;
     
-    public partial class InitialCreate : DbMigration
+    public partial class ContextUpdateBIG : DbMigration
     {
         public override void Up()
         {
@@ -22,8 +22,9 @@ namespace ClockIn_ClockOut.Migrations
                     {
                         ID = c.Int(nullable: false, identity: true),
                         UserId = c.Int(nullable: false),
-                        TimeIn = c.DateTime(nullable: false),
-                        TimeOut = c.DateTime(nullable: false),
+                        TimeIn = c.DateTime(nullable: false, precision: 7, storeType: "datetime2"),
+                        TimeOut = c.DateTime(nullable: false, precision: 7, storeType: "datetime2"),
+                        timeMinutes = c.Time(nullable: false, precision: 7),
                     })
                 .PrimaryKey(t => t.ID);
             
@@ -37,6 +38,7 @@ namespace ClockIn_ClockOut.Migrations
                         FirstName = c.String(),
                         LastName = c.String(),
                         Role = c.Int(nullable: false),
+                        Timed = c.Boolean(nullable: false),
                     })
                 .PrimaryKey(t => t.ID);
             

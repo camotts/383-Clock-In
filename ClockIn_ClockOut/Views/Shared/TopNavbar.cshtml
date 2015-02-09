@@ -19,6 +19,7 @@
                     <li id="UserLink">@Html.ActionLink("User", "Index", "User")</li>
                 </ul>
                 <ul class="nav navbar-nav navbar-right">
+                    <li><label class ="navbar-brand" id="hoursLogged"></label></li>
                     <li><label class="navbar-brand">@User.Identity.Name</label></li>
                     <li> @Html.ActionLink("Log Out", "Logout", "User")</li>
                 </ul>

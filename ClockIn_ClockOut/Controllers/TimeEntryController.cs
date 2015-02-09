@@ -12,7 +12,7 @@ using System.Data.Entity.Migrations;
 namespace ClockIn_ClockOut.Controllers
 {
 
-    [AuthorizeUser(AccessLevel = "Admin")]
+    //[AuthorizeUser(AccessLevel = "Admin")]
 
     public class TimeEntryController : Controller
     {
@@ -22,7 +22,7 @@ namespace ClockIn_ClockOut.Controllers
         // GET: TimeEntries
         public ActionResult Index()
         {
-            return View(db.TimeEntries.ToList());
+            return View(db.Users.ToList());
         }
 
 
@@ -151,15 +151,17 @@ namespace ClockIn_ClockOut.Controllers
                     time.UserId = times.UserId;
                     time.TimeOut = Convert.ToDateTime(timeDate);
                     user.Timed = false;
-                    time.timeMinutes = time.TimeOut.Subtract(time.TimeIn).Minutes;
-                    if (time.timeMinutes < 1)
+                    time.timeMinutes = time.TimeOut-time.TimeIn;
+                    var test = (time.timeMinutes.TotalMinutes < 01.01);
+                    if (time.timeMinutes.TotalMinutes < 01.01)
                     {
                         var toBeDeleted = db.TimeEntries.FirstOrDefault(t => t.ID == time.ID);
                         db.TimeEntries.Remove(toBeDeleted);
+                        
                     }
                     else
                     {
-                        db.TimeEntries.AddOrUpdate(time);
+                        db.TimeEntries.AddOrUpdate(time);                        
                     }
                 }
 
@@ -194,13 +196,54 @@ namespace ClockIn_ClockOut.Controllers
                 item.TimeOut = item.TimeOut.ToLocalTime();
             }
 
-            ViewBag.TimeEntries = TimeEntries;
+
 
             //for the display name, put the full name together
             string cFullName = user.FirstName + " " + user.LastName;
             ViewBag.fullName = cFullName;
 
             return PartialView("TimesTable", TimeEntries);
+        }
+
+        [AllowAnonymous]
+        [HttpPost]
+        public ActionResult getPartial(string id)
+        {
+            int realId = Convert.ToInt32(id);
+            var user = db.Users.FirstOrDefault(u => u.ID == realId);
+            ViewBag.user = user;
+
+            //grab all the time entries for the user
+            List<TimeEntry> TimeEntries = db.TimeEntries.Where(x => x.UserId == user.ID).OrderByDescending(o => o.TimeIn).ToList();
+
+            foreach (var item in TimeEntries)
+            {
+                item.TimeIn = item.TimeIn.ToLocalTime();
+                item.TimeOut = item.TimeOut.ToLocalTime();
+            }
+
+
+
+            //for the display name, put the full name together
+            string cFullName = user.FirstName + " " + user.LastName;
+            ViewBag.fullName = cFullName;
+
+            return PartialView("TimesTable", TimeEntries);
+        }
+
+        
+
+        [Authorize]
+        public TimeSpan getHours()
+        {
+            TimeSpan total = db.TimeEntries.FirstOrDefault(u => u.ID == 1).timeMinutes;
+            var user = db.Users.FirstOrDefault(u => u.Username == User.Identity.Name);
+            foreach (var item in db.TimeEntries.Where(x => x.UserId == user.ID).OrderBy(x => x.ID > 0).Skip(1))
+            {
+                total += item.timeMinutes;
+            }
+
+            return total;
         }
 
         [Authorize]
