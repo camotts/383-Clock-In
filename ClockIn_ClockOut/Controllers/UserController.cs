@@ -134,7 +134,6 @@ namespace ClockIn_ClockOut.Controllers
             return View(userLogingIn);
         }
 
-        [AllowAnonymous]
         [HttpGet]
         [AllowAnonymous]
         public ActionResult Logout()

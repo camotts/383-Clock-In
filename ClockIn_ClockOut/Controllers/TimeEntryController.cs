@@ -11,11 +11,9 @@ using System.Data.Entity.Migrations;
 
 namespace ClockIn_ClockOut.Controllers
 {
-<<<<<<< HEAD
+
     [AuthorizeUser(AccessLevel = "Admin")]
-=======
-    
->>>>>>> 89ef119f78ce9899971e94ed2a6e196594d89174
+
     public class TimeEntryController : Controller
     {
         private DatabaseContext db = new DatabaseContext();

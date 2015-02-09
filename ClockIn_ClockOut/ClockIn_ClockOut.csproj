@@ -169,7 +169,7 @@
     <Content Include="Scripts\bootstrap.js" />
     <Content Include="Scripts\bootstrap.min.js" />
     <Content Include="Scripts\Custom Scripts\bootswatch.js" />
-    <Content Include="Scripts\Custom Scripts\header.js" />
+    <Content Include="Scripts\Custom Scripts\Header.js" />
     <Content Include="Scripts\Custom Scripts\TimeClock.js" />
     <Content Include="fonts\glyphicons-halflings-regular.woff" />
     <Content Include="fonts\glyphicons-halflings-regular.ttf" />
