@@ -87,6 +87,7 @@ namespace ClockIn_ClockOut.Controllers
             {
                 return HttpNotFound();
             }
+            
             return View(user);
         }
 
@@ -100,10 +101,19 @@ namespace ClockIn_ClockOut.Controllers
             if (ModelState.IsValid)
             {
                 var entry = db.Entry(user);
-                entry.Property(u => u.Password).IsModified = false;
-
-                user.Password = Crypto.HashPassword(user.Password);
+                
                 db.Entry(user).State = EntityState.Modified;
+                if (entry.Property(x => x.Password).IsModified)
+                {
+                    user.Password = Crypto.HashPassword(user.Password);
+                }
+                else
+                {
+                    var orig = db.Users.FirstOrDefault(u => u.ID == user.ID);
+                    user.Password = orig.Password;
+                }
+
+                
                 db.SaveChanges();
                 return RedirectToAction("Index");
             }

@@ -234,13 +234,9 @@ namespace ClockIn_ClockOut.Controllers
 
 
             //Is the user an admin??
-            bool isAdmin = false;
-            if (user.Role == 2)
-            {
-                isAdmin = true;
-            }
 
-            ViewBag.isAdmin = isAdmin;
+
+            ViewBag.isAdmin = true;
 
             //for the display name, put the full name together
             string cFullName = user.FirstName + " " + user.LastName;
@@ -262,7 +258,7 @@ namespace ClockIn_ClockOut.Controllers
         [Authorize]
         public String getHours()
         {
-<<<<<<< HEAD
+
 
             TimeSpan total = DateTime.Now - DateTime.Now;
             var user = db.Users.FirstOrDefault(u => u.Username == User.Identity.Name);
@@ -280,13 +276,8 @@ namespace ClockIn_ClockOut.Controllers
             int realId = Convert.ToInt32(id);
             TimeSpan total = DateTime.Now - DateTime.Now;
 
-            var user = db.Users.FirstOrDefault(u => u.ID == realId);
-            foreach (var item in db.TimeEntries.Where(x => x.UserId == user.ID).OrderBy(x => x.ID > 0))
-=======
-            TimeSpan total = DateTime.Now - DateTime.Now;
             var user = db.Users.FirstOrDefault(u => u.Username == User.Identity.Name);
             foreach (var item in db.TimeEntries.Where(x => x.UserId == user.ID).OrderBy(x => x.ID > 0))
->>>>>>> 7a8db09d8607a204c6d5dc30807517a8676b48e8
             {
                 total += item.timeMinutes;
             }
