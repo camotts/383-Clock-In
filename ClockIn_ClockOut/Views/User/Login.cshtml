@@ -11,7 +11,7 @@
 {
     @Html.ValidationSummary(true, "Login failed. Check your login details.");
     <div class="row">
-        <div class="col-xs-12">
+        <div class="col-xs-6">
             <section id="loginForm">
                 @using (Html.BeginForm("Login", "Account", new { ReturnUrl = ViewBag.ReturnUrl }, FormMethod.Post, new { @class = "form-horizontal", role = "form" }))
                 {

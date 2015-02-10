@@ -129,6 +129,10 @@
     <Compile Include="Migrations\201502090323196_Context Update BIG.Designer.cs">
       <DependentUpon>201502090323196_Context Update BIG.cs</DependentUpon>
     </Compile>
+    <Compile Include="Migrations\201502100043373_Context Update 2.cs" />
+    <Compile Include="Migrations\201502100043373_Context Update 2.Designer.cs">
+      <DependentUpon>201502100043373_Context Update 2.cs</DependentUpon>
+    </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Models\AuthorizeUserAttribute.cs" />
     <Compile Include="Models\DatabaseContext.cs" />
@@ -227,6 +231,9 @@
   <ItemGroup>
     <EmbeddedResource Include="Migrations\201502090323196_Context Update BIG.resx">
       <DependentUpon>201502090323196_Context Update BIG.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201502100043373_Context Update 2.resx">
+      <DependentUpon>201502100043373_Context Update 2.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <PropertyGroup>

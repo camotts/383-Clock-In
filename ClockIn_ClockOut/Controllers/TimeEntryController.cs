@@ -216,8 +216,8 @@ namespace ClockIn_ClockOut.Controllers
         }
 
         [AllowAnonymous]
-        [HttpPost]
-        public ActionResult getPartial(string id)
+        [HttpGet]
+        public ActionResult getPartialId(String id)
         {
             int realId = Convert.ToInt32(id);
             var user = db.Users.FirstOrDefault(u => u.ID == realId);
@@ -249,11 +249,21 @@ namespace ClockIn_ClockOut.Controllers
             return PartialView("TimesTable", TimeEntries);
         }
 
-        
+        [AllowAnonymous]
+        [HttpGet]
+        public string getName(String id)
+        {
+            int realId = Convert.ToInt32(id);
+            var user = db.Users.FirstOrDefault(u => u.ID == realId);
+
+            return (user.FirstName + " " + user.LastName);
+        }
 
         [Authorize]
-        public TimeSpan getHours()
+        public String getHours()
         {
+<<<<<<< HEAD
+
             TimeSpan total = DateTime.Now - DateTime.Now;
             var user = db.Users.FirstOrDefault(u => u.Username == User.Identity.Name);
             foreach (var item in db.TimeEntries.Where(x => x.UserId == user.ID).OrderBy(x => x.ID > 0))
@@ -261,7 +271,27 @@ namespace ClockIn_ClockOut.Controllers
                 total += item.timeMinutes;
             }
 
-            return total;
+            return total.ToString(@"hh\:mm");
+        }
+
+        [Authorize]
+        public String getHoursId(String id)
+        {
+            int realId = Convert.ToInt32(id);
+            TimeSpan total = DateTime.Now - DateTime.Now;
+
+            var user = db.Users.FirstOrDefault(u => u.ID == realId);
+            foreach (var item in db.TimeEntries.Where(x => x.UserId == user.ID).OrderBy(x => x.ID > 0))
+=======
+            TimeSpan total = DateTime.Now - DateTime.Now;
+            var user = db.Users.FirstOrDefault(u => u.Username == User.Identity.Name);
+            foreach (var item in db.TimeEntries.Where(x => x.UserId == user.ID).OrderBy(x => x.ID > 0))
+>>>>>>> 7a8db09d8607a204c6d5dc30807517a8676b48e8
+            {
+                total += item.timeMinutes;
+            }
+
+            return total.ToString(@"hh\:mm");
         }
 
         [Authorize]
