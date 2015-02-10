@@ -12,6 +12,7 @@
                     <div class="panel-heading">
                         <h4 class="panel-title">
                             <a id="collapseName@(item.ID)" data-toggle="collapse" data-parent="#accordion" href="#collapse@(item.ID)">Name1</a>
+                            <a id="collapseTime@(item.ID)" class="navbar-right" data-toggle="collapse" data-parent="#accordion">TIME</a>
                         </h4>
                     </div>
                     <div id="collapse@(item.ID)" class="panel-collapse collapse">
@@ -23,71 +24,3 @@
             }
         </div>
     </div>
-
-
-
-
-
-    <div class="panel panel-default">
-        <div class="panel-heading">
-            <h4 class="panel-title">
-                <a data-toggle="collapse" data-parent="#accordion" href="#collapseTwo">Name2</a>
-            </h4>
-        </div>
-        <div id="collapseTwo" class="panel-collapse collapse">
-            <div class="panel-body">
-                <p>His hours worked<a href="http://www.tutorialrepublic.com/twitter-bootstrap-tutorial/" target="_blank">Learn more.</a></p>
-            </div>
-        </div>
-    </div>
-    <div class="panel panel-default">
-        <div class="panel-heading">
-            <h4 class="panel-title">
-                <a data-toggle="collapse" data-parent="#accordion" href="#collapseThree">Name3</a>
-            </h4>
-        </div>
-        <div id="collapseThree" class="panel-collapse collapse">
-            <div class="panel-body">
-                <p>His hours worked<a href="http://www.tutorialrepublic.com/css-tutorial/" target="_blank">Learn more.</a></p>
-            </div>
-        </div>
-    </div>
-
-
-
-<!--<p>
-        Html.ActionLink("Create New", "Create", null, new { Class = "btn btn-default" })
-    </p>
-        <table class="table">
-        <tr>
-            <th>
-                Html.DisplayNameFor(model => model.UserId)
-            </th>
-            <th>
-                Html.DisplayNameFor(model => model.TimeIn)
-            </th>
-            <th>
-                Html.DisplayNameFor(model => model.TimeOut)
-            </th>
-            <th></th>
-        </tr>
-
-        foreach (var item in Model) {
-            <tr>
-                <td>
-                    Html.DisplayFor(modelItem => item.UserId)
-                </td>
-                <td>
-                    Html.DisplayFor(modelItem => item.TimeIn)
-                </td>
-                <td>
-                    Html.DisplayFor(modelItem => item.TimeOut)
-                </td>
-                <td>
-                    Html.ActionLink("Edit", "Edit", new { id = item.ID }, new { class = "btn btn-warning btn-xs" })
-                    Html.ActionLink("Details", "Details", new { id = item.ID }, new { class = "btn btn-default btn-xs" })
-                    Html.ActionLink("Delete", "Delete", new { id = item.ID }, new { class = "btn btn-danger btn-xs" })
-                </td>
-            </tr>
-}-->
-    </table>

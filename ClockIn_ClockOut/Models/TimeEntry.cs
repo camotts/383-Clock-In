@@ -17,10 +17,12 @@ namespace ClockIn_ClockOut.Models
         
         [Display(Name= "Time In")]
         [Column(TypeName = "DateTime2")]
+        [DisplayFormat(DataFormatString = "{0:MMMM dd,yyyy hh\\:mm tt}")]
         public DateTime TimeIn { get; set; }
         
         [Display(Name = "Time Out")]
         [Column(TypeName = "DateTime2")]
+        [DisplayFormat(DataFormatString = "{0:MMMM dd,yyyy hh\\:mm tt}")]
         public DateTime TimeOut { get; set; }
 
         [Display(Name = "Work Hours")]
