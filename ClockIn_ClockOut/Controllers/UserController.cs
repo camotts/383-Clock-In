@@ -57,6 +57,7 @@ namespace ClockIn_ClockOut.Controllers
                 if(db.Users.Any(u=> u.Username == user.Username)){
                     ViewBag.Duplicate="Username is not available";
                     ViewBag.RoleId = new SelectList(db.Roles, "RoleId", "RoleName");
+                    ModelState.AddModelError("", "Username already Exists");
                     return View(user);
                 }
                 user.Password = Crypto.HashPassword(user.Password);
