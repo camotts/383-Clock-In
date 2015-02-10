@@ -42,6 +42,8 @@ namespace ClockIn_ClockOut.Controllers
         // GET: Users/Create
         public ActionResult Create()
         {
+
+            ViewBag.RoleID = new SelectList(db.Roles, "ID", "Name");
             return View();
         }
 
@@ -101,28 +103,29 @@ namespace ClockIn_ClockOut.Controllers
         // more details see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Edit([Bind(Include = "ID,Username,Password,FirstName,LastName,Role")] User user)
+        public ActionResult Edit([Bind(Include = "ID,Username,Password,FirstName,LastName,Role")] User user, String role)
         {
             if (ModelState.IsValid)
             {
-                var entry = db.Entry(user);
-                
-                db.Entry(user).State = EntityState.Modified;
-                if (entry.Property(x => x.Password).IsModified)
+                if (user.Password != null && user.Password != "")
                 {
+
+
+                    var entry = db.Entry(user);
+
+                    db.Entry(user).State = EntityState.Modified;
+
                     user.Password = Crypto.HashPassword(user.Password);
+
+                    db.SaveChanges();
+                    return RedirectToAction("Index");
                 }
                 else
                 {
-                    var orig = db.Users.FirstOrDefault(u => u.ID == user.ID);
-                    user.Password = orig.Password;
+                    ModelState.AddModelError("", "Require a password input");
                 }
-
-                
-                db.SaveChanges();
-                return RedirectToAction("Index");
             }
-            return View(user);
+            return Edit(user.ID);
         }
 
         //Login Controller
