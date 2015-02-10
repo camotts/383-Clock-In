@@ -56,7 +56,7 @@ namespace ClockIn_ClockOut.Controllers
             {
                 if(db.Users.Any(u=> u.Username == user.Username)){
                     ViewBag.Duplicate="Username is not available";
-                    ViewBag.RoleId = new SelectList(db.Roles, "RoleId", "RoleName");
+                    ViewBag.RoleId = new SelectList(db.Roles, "ID", "Name");
                     ModelState.AddModelError("", "Username already Exists");
                     return View(user);
                 }
@@ -83,6 +83,11 @@ namespace ClockIn_ClockOut.Controllers
                 return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
             }
             User user = db.Users.Find(id);
+
+            // var role = db.Roles.FirstOrDefault(r => r.ID == user.ID);
+            ViewBag.UserRole = user.Role;
+            ViewBag.RoleID = new SelectList(db.Roles, "ID", "Name");
+
             if (user == null)
             {
                 return HttpNotFound();
@@ -206,7 +211,23 @@ namespace ClockIn_ClockOut.Controllers
             }
             return false;
         }
+        [AllowAnonymous]
+        public bool isAdminThroughID(int Id)
+        {
+            if (User.Identity.IsAuthenticated)
+            {
+                int userForRoleCheck = Id;
 
+                var grabUser = db.Users.FirstOrDefault(x => userForRoleCheck == x.ID);
+
+                if (grabUser.Role == 2)
+                {
+                    return true;
+                }
+
+            }
+            return false;
+        }
         [AllowAnonymous]
         public int getCount()
         {

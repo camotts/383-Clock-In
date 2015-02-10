@@ -11,7 +11,7 @@ try{
 //Initial load of the api
 $.get("http://api.bootswatch.com/3/", function (data) {
     var themes = data.themes;
-    var select = $("select");
+    var select = $("#API-DropDown");
 
     themes.forEach(function (value, index) {
         select.append($("<option />")
@@ -46,7 +46,7 @@ function change(id) {
 
     $.get("http://api.bootswatch.com/3/", function (data) {
         var themes = data.themes;
-        var select = $("select");
+        var select = $("#API-DropDown");
 
         select.change(function () {
             if (pageLoad) {

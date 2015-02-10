@@ -50,8 +50,7 @@
         <div class="form-group">
             @Html.LabelFor(model => model.Role, htmlAttributes: new { @class = "control-label col-md-2" })
             <div class="col-md-10">
-                @Html.EditorFor(model => model.Role, new { htmlAttributes = new { @class = "form-control" } })
-                @Html.ValidationMessageFor(model => model.Role, "", new { @class = "text-danger" })
+                @Html.DropDownList("RoleID", string.Empty)
             </div>
         </div>
 
@@ -64,8 +63,7 @@
 }
 
 <div>
-    <button class="btn btn-inverse btn-xs" id="Index" title="BacktoList" type="button"style="color:darkgray">Back to List</button>
-    
+    @Html.ActionLink("Back to List", "Index", new { @class = "btn btn-primary" })
 </div>
 
 @section Scripts {

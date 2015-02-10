@@ -18,11 +18,19 @@ namespace ClockIn_ClockOut.Controllers
     {
         private DatabaseContext db = new DatabaseContext();
 
-        [AuthorizeUser(AccessLevel = "Admin")]
+        [Authorize]
         // GET: TimeEntries
         public ActionResult Index()
         {
-            return View(db.Users.ToList());
+            var user = db.Users.FirstOrDefault(u => u.Username == User.Identity.Name);
+            if (user.Role == 2)
+            {
+                return View(db.Users.ToList());
+            }
+            else
+            {
+                return RedirectToAction("PunchCard");
+            }
         }
 
 
@@ -234,8 +242,6 @@ namespace ClockIn_ClockOut.Controllers
 
 
             //Is the user an admin??
-
-
             ViewBag.isAdmin = true;
 
             //for the display name, put the full name together
